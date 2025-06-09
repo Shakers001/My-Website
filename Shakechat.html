@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Shadrack Ndalo</title>
+  <style>
+    body {
+      background-image: url('Myweb.jpg'); /* Ensure this file is in the same folder */
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: white;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    nav {
+      background-color: rgba(0, 0, 0, 0.8);
+      position: relative;
+      display: flex;
+      align-items: center;
+      padding: 0 10px;
+    }
+
+    .tab-buttons {
+      display: flex;
+      position: relative;
+      flex: 1;
+    }
+
+    .tab-btn {
+      background: none;
+      border: none;
+      color: white;
+      padding: 14px 20px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s;
+      position: relative;
+      user-select: none;
+    }
+
+    .tab-btn:hover,
+    .tab-btn.active {
+      background-color: #575757;
+    }
+
+    .indicator {
+      position: absolute;
+      bottom: 0;
+      height: 4px;
+      width: 0;
+      background: #ff9800;
+      transition: 0.3s;
+      left: 0;
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #444;
+      min-width: 180px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+      top: 100%;
+      left: 0;
+      z-index: 10;
+      border-radius: 0 0 5px 5px;
+      overflow: hidden;
+    }
+
+    .dropdown-content button {
+      color: white;
+      padding: 12px 16px;
+      text-align: left;
+      border: none;
+      background: none;
+      cursor: pointer;
+      width: 100%;
+      font-size: 15px;
+      transition: background-color 0.3s;
+    }
+
+    .dropdown-content button:hover {
+      background-color: #666;
+    }
+
+    .dropdown:hover .dropdown-content,
+    .dropdown.active .dropdown-content {
+      display: block;
+    }
+
+    .dropdown:hover > .tab-btn,
+    .dropdown.active > .tab-btn {
+      background-color: #575757;
+    }
+
+    .tab-content {
+      display: none;
+      padding: 20px;
+      animation: fade 0.3s ease-in;
+      background-color: rgba(0, 0, 0, 0.6);
+      margin: 20px;
+      border-radius: 10px;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    @keyframes fade {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .message {
+      background-color: #e0e0e0;
+      margin: 5px 0;
+      padding: 8px 12px;
+      border-radius: 10px;
+      max-width: 70%;
+      color: black;
+    }
+
+    .message.bot {
+      background-color: #d1edc1;
+      align-self: flex-end;
+      text-align: right;
+    }
+
+    .input-area input, .input-area button {
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="tab-buttons">
+      <button class="tab-btn active" data-tab="home">Home</button>
+      <button class="tab-btn" data-tab="about">About</button>
+
+      <div class="dropdown">
+        <button class="tab-btn" data-tab="services">Services ▼</button>
+        <div class="dropdown-content">
+          <button data-tab="webDesign">Web Design</button>
+          <button data-tab="About Shakers">About Shakers</button>
+          <button data-tab="marketing">Marketing</button>
+        </div>
+      </div>
+
+      <button class="tab-btn" data-tab="contact">Contact</button>
+      <button class="tab-btn" data-tab="messages">Messages</button>
+    </div>
+
+    <div class="indicator"></div>
+  </nav>
+
+  <div id="home" class="tab-content active">
+    <h2>Home</h2>
+    <p>Welcome to My Website Where We Code for Change</p>
+  </div>
+
+  <div id="about" class="tab-content">
+    <h2>About</h2>
+    <p>About us section.</p>
+  </div>
+
+  <div id="services" class="tab-content">
+    <h2>Services</h2>
+    <p>Overview of our services.</p>
+  </div>
+
+  <div id="webDesign" class="tab-content">
+    <h2>Web Design</h2>
+    <p>Details about web design services.</p>
+  </div>
+
+  <div id="About Shakers" class="tab-content">
+    <h2>About Shakers</h2>
+    <p>Details about About Shakers services.</p>
+    <br><br>
+    <article>
+      <mark>Follow me on the following accounts:<br><br>
+        <a href="https://www.instagram.com/shakers._.001/" target="_blank" style="color: white;">Visit Shakers on Instagram</a>
+      </mark>
+    </article>
+  </div>
+
+  <div id="marketing" class="tab-content">
+    <h2>Marketing</h2>
+    <p>Details about marketing services.</p>
+  </div>
+
+  <div id="contact" class="tab-content">
+    <h2>Contact</h2>
+    <p>Contact information goes here.</p>
+  </div>
+
+  <div id="messages" class="tab-content">
+    <h2>💬 Chat</h2>
+    <div id="chatBox" class="chat-box" style="height:300px; overflow-y:auto; padding:10px; border:1px solid #ccc; display:flex; flex-direction:column; background:white; color:black;">
+      <!-- Messages appear here -->
+    </div>
+    <div class="input-area" style="display:flex; margin-top:10px;">
+      <input type="text" id="messageInput" placeholder="Type a message..." style="flex:1; padding:10px; border-radius:5px; border:1px solid #ccc;" />
+      <button onclick="sendMessage()" style="margin-left:10px; padding:10px 15px; background:#0084ff; color:#fff; border:none; border-radius:5px; cursor:pointer;">Send</button>
+    </div>
+  </div>
+
+  <script>
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const dropdownButtons = document.querySelectorAll('.dropdown-content button');
+    const tabContents = document.querySelectorAll('.tab-content');
+    const indicator = document.querySelector('.indicator');
+    const dropdown = document.querySelector('.dropdown');
+
+    function moveIndicator(el) {
+      indicator.style.width = `${el.offsetWidth}px`;
+      indicator.style.left = `${el.offsetLeft}px`;
+    }
+    moveIndicator(document.querySelector('.tab-btn.active'));
+
+    function activateTab(tabName) {
+      tabButtons.forEach(b => b.classList.remove('active'));
+      tabContents.forEach(c => c.classList.remove('active'));
+      if (dropdown) dropdown.classList.remove('active');
+
+      if (["webDesign", "About Shakers", "marketing"].includes(tabName)) {
+        dropdown.classList.add('active');
+        moveIndicator(dropdown.querySelector('.tab-btn'));
+      } else {
+        const topBtn = Array.from(tabButtons).find(b => b.dataset.tab === tabName);
+        if (topBtn) {
+          topBtn.classList.add('active');
+          moveIndicator(topBtn);
+        }
+      }
+
+      const tabContent = document.getElementById(tabName);
+      if (tabContent) tabContent.classList.add('active');
+    }
+
+    tabButtons.forEach(btn => {
+      btn.addEventListener('click', () => activateTab(btn.dataset.tab));
+    });
+
+    dropdownButtons.forEach(btn => {
+      btn.addEventListener('click', () => activateTab(btn.dataset.tab));
+    });
+
+    function sendMessage() {
+      const input = document.getElementById('messageInput');
+      const msg = input.value.trim().toLowerCase();
+      if (!msg) return;
+
+      addMessage(input.value.trim(), 'user');
+      input.value = "";
+
+      setTimeout(() => {
+        const reply = getBotReply(msg);
+        addMessage("🤖 Bot: " + reply, 'bot');
+      }, 1000);
+    }
+
+    function getBotReply(message) {
+      const greetings = ['hi', 'hello', 'hey', 'good morning', 'good afternoon', 'good evening'];
+      const howAreYou = ['how are you', "how's it going", 'how do you do'];
+      const bye = ['bye', 'goodbye', 'see you', 'farewell'];
+      const thanks = ['thanks', 'thank you', 'thx'];
+
+      if (greetings.some(g => message.includes(g))) return "Hello! How can I assist you today?";
+      if (howAreYou.some(h => message.includes(h))) return "I'm just a bot, but I'm doing great! How about you?";
+      if (bye.some(b => message.includes(b))) return "Goodbye! Have a nice day!";
+      if (thanks.some(t => message.includes(t))) return "You're welcome!";
+
+      return "Sorry, I didn't understand that. Can you please rephrase?";
+    }
+
+    function addMessage(text, sender) {
+      const chatBox = document.getElementById('chatBox');
+      const message = document.createElement('div');
+      message.classList.add('message');
+      if (sender === 'bot') message.classList.add('bot');
+      message.textContent = text;
+      chatBox.appendChild(message);
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    document.getElementById('messageInput').addEventListener('keypress', e => {
+      if (e.key === 'Enter') sendMessage();
+    });
+  </script>
+
+</body>
+</html>
